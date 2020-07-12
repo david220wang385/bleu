@@ -23,15 +23,14 @@ keystream1.update(key1.encode())
 keystream2 = sha3_384()
 keystream2.update(key2.encode())
 
-firstpass = cipher(msg.encode(), keystream1.digest())
-secondpass = cipher(firstpass, keystream2.digest())
+int_key = cipher(keystream2.digest(), keystream1.digest())
+ciphertext = cipher(msg.encode(), int_key)
 
-firstpassback = cipher(secondpass, keystream2.digest())
-secondpassback = cipher(firstpassback, keystream1.digest())
+firstback = cipher(ciphertext, keystream1.digest())
+secondback = cipher(firstback, keystream2.digest())
 
 # Prove cipher works
 print(msg.encode())
-print(firstpass)
-print(secondpass)
-print(firstpassback)
-print(secondpassback)
+print(ciphertext)
+print(firstback)
+print(secondback)
