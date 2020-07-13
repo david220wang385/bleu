@@ -17,13 +17,27 @@ from os.path import isfile, join, splitext
 
 def main():
 
+    # Provide decription of the program
     parser = argparse.ArgumentParser(description='Enrypt all the files in the given directory with the provided key')
-    parser.add_argument('directory')
-    parser.add_argument('key')
+    op_mode = parser.add_mutually_exclusive_group()
+
+    # Optional flag for individual file mode of operation, if not included use directory mode
+    op_mode.add_argument('-d', '--dirmode',
+                        help='Use to encrypt an entire directory as opposed to a single file',
+                        action='store_true')
+    op_mode.add_argument('-f', '--filemode',
+                        help='Use to encrypt a single file as opposed to an entire directory',
+                        action='store_true')
+
+    # Positional arguments for specifying target directory/file and key to be used in the keystream
+    parser.add_argument('target', help='The directory that you want to encrypt; If file mode is used this becomes a file')
+    parser.add_argument('key', help='The key to be used in the encryption process')
     args = parser.parse_args()
     
-    start_directory = args.directory
+    start_directory = args.target
+    print(start_directory)
     key = args.key
+    print(key)
     # # Set variables based on command line arguments
     # start_directory = '../wf_proj_backup/'
     # key = "my_frame_is_the_hand_and_i_am_the_will"
