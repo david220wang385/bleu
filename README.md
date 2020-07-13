@@ -5,4 +5,9 @@ L.il'
 E.ncryption  
 U.tility  
 -------
-this side project was created to give me a fast way to enrypt some files as well as a platform for testing different encryption methods
+### this side project was created to give me a fast way to enrypt some files/directories to keep em' for prying eyes 👀
+
+#### For usage and help, type:
+```
+python encrypt.py --help
+```
