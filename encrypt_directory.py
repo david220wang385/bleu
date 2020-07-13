@@ -34,6 +34,8 @@ def main():
     parser.add_argument('key', help='The key to be used in the encryption process')
     args = parser.parse_args()
     
+    print(args.dirmode)
+    print(args.filemode)
     start_directory = args.target
     print(start_directory)
     key = args.key
